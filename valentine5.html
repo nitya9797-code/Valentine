@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Enlu ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.65);
+  height: 100vh;
+  width: 100%;
+}
+
+.slide {
+  display: none;
+  padding: 40px;
+  height: 100vh;
+  color: #fff;
+  text-align: center;
+}
+
+.active { display: block; }
+
+h1,h2,p { text-shadow: 2px 2px 6px black; }
+
+.cursive {
+  font-family: 'Dancing Script', cursive;
+  font-size: 26px;
+}
+
+button {
+  padding: 12px 25px;
+  margin: 15px;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  background: #ff4d6d;
+  color: white;
+}
+
+button:hover { background: #ff1f4d; }
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin: 8px;
+  width: 60%;
+}
+
+#typing {
+  font-size: 22px;
+  line-height: 1.6;
+  font-family: 'Dancing Script', cursive;
+}
+
+.hearts span {
+  position: absolute;
+  bottom: -50px;
+  animation: float 10s infinite;
+  font-size: 24px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1;}
+  100% { transform: translateY(-100vh); opacity: 0;}
+}
+
+#ring {
+  font-size: 80px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.2);}
+  100% {transform: scale(1);}
+}
+
+.fireworks {
+  font-size: 50px;
+  animation: explode 1s infinite alternate;
+}
+
+@keyframes explode {
+  from {opacity:0.5;}
+  to {opacity:1;}
+}
+
+.final {
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px;
+}
+
+.slideshow img {
+  width: 300px;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px pink;
+}
+</style>
+</head>
+
+<body>
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="overlay">
+
+<div class="hearts">
+  <span>❤️</span><span>💖</span><span>💕</span><span>💗</span><span>💘</span>
+</div>
+
+<div class="slide active" id="slide1">
+  <h1 class="cursive">Hi Enlu, my love 💕</h1>
+  <p class="cursive">
+    You've probably guessed what this is… but I won’t make this that easy on you 😌  
+    <br>Are you ready to play my game?
+  </p>
+  <button onclick="wrong()">No</button>
+  <button onclick="nextSlide(2)">Yes</button>
+</div>
+
+<div class="slide" id="slide2">
+  <div id="typing"></div>
+  <br>
+  <button onclick="nextSlide(3)">Continue</button>
+</div>
+
+<div class="slide" id="slide3">
+  <h2 class="cursive">Quiz Time 😈</h2>
+
+  <p>1. What was the date when we met in Jaipur?</p>
+  <input><br>
+
+  <p>2. What is my birthday?</p>
+  <input><br>
+
+  <p>3. What was the mutton dish we shared in Jaipur?</p>
+  <input><br>
+
+  <p>4. What is the first movie we watched together in a theatre?</p>
+  <input><br>
+
+  <button onclick="nextSlide(4)">Submit</button>
+</div>
+
+<div class="slide" id="slide4">
+  <h1 class="cursive">Good job, right answers Enluuu! 😘💖</h1>
+  <button onclick="nextSlide(5)">Next</button>
+</div>
+
+<div class="slide" id="slide5">
+  <h2 class="cursive">Enlenca Roseline Dsouza…</h2>
+  <p class="cursive">
+    Jaipur ki galiyon se shuru hui kahaani,<br>
+    Ab dil tak aa chuki hai nishaani.<br>
+    Zindagi bhar saath chalna hai tumhaare saath,<br>
+    Meri har khushi tumhaari muskaan se hai mehkaani.
+  </p>
+  <h1 class="cursive">Will you be my Valentine? 💍</h1>
+  <div id="ring">💍</div>
+  <button onclick="wrong()">No</button>
+  <button onclick="nextSlide(6)">Yes</button>
+</div>
+
+<div class="slide" id="slide6">
+  <h1 class="fireworks">🎆 YAAAAAAYYYYY 🎆</h1>
+  <p class="cursive">
+    Mohabbat rang laayi hai aaj is shaam mein,<br>
+    Tum ho meri dua, meri har muskaan mein.
+  </p>
+  <button onclick="nextSlide(7)">Final</button>
+</div>
+
+<div class="slide" id="slide7">
+  <h1 class="final">I love you, Enlu ❤️</h1>
+  <div class="slideshow">
+    <img id="slideImg" src="pic1.jpg">
+  </div>
+</div>
+
+</div>
+
+<script>
+let current = 1;
+let musicStarted = false;
+
+function nextSlide(n) {
+  if (!musicStarted) {
+    document.getElementById("bgMusic").play();
+    musicStarted = true;
+  }
+  document.getElementById("slide"+current).classList.remove("active");
+  document.getElementById("slide"+n).classList.add("active");
+  current = n;
+}
+
+function wrong() {
+  alert("Wrong answer 😜");
+}
+
+const text = `Ever since I met you, Enlu, I was drawn towards you in ways I could not imagine possible for me.
+
+I’m not just talking about Jaipur — I’ve felt this way since Karad, since that camp.
+
+Maybe we weren’t ready for each other then, and we had to become better versions of ourselves for us to be together forever.
+
+We have both suffered along the way and had many ups and downs.
+
+When we finally met in Jaipur again, I felt like we were finally ready for each other and to embrace the rest of our lives.
+
+We may not be perfect people individually (although you come pretty close to perfect), but I truly feel that we are great for each other.
+
+Falling in love with you was the easiest thing in the world — but I won’t stop at that.
+
+I promise to keep making efforts for you and for us.
+
+I want us to be happy together and make each other’s families happy as well.
+
+You might have guessed what this is for… but before I ask you the question you’ve been wanting to hear for so long, there is a quiz you must pass! Let’s see if you pass or not!`;
+
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 35);
+  }
+}
+typeWriter();
+
+// slideshow
+const images = ["pic1.jpg", "pic2.jpg", "pic3.jpg", "pic4.jpg"];
+let imgIndex = 0;
+
+function startSlideshow() {
+  setInterval(() => {
+    imgIndex = (imgIndex + 1) % images.length;
+    document.getElementById("slideImg").src = images[imgIndex];
+  }, 2500);
+}
+
+// detect final slide
+const observer = new MutationObserver(() => {
+  if (document.getElementById("slide7").classList.contains("active")) {
+    startSlideshow();
+  }
+});
+
+observer.observe(document.getElementById("slide7"), { attributes: true });
+</script>
+
+</body>
+</html>
